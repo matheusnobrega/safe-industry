@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicação Flask com Mensagem Única Dinâmica</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.1/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('update_message', function(data) {
+            var message = data.message;
+            var messageElement = document.getElementById('dynamic-message');
+            messageElement.innerHTML = message;
+        });
+    </script>
+</head>
+<body>
+    <h1>Mensagem Atualizada a Cada 5 Segundos:</h1>
+    <p id="dynamic-message"></p>
+</body>
+</html>
